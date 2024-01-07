@@ -15,6 +15,7 @@
 
 #include "alexnet.h"
 #include "flexflow/utils/cuda_helper.h"
+#include "stdio.h"
 
 void DataLoader::load_input(Task const *task,
                             std::vector<PhysicalRegion> const &regions,
@@ -67,6 +68,7 @@ void DataLoader::load_label(Task const *task,
                                           false /*readOutput*/);
   int batch_size = acc_batch_label.rect.hi[1] - acc_batch_label.rect.lo[1] + 1;
   // FIXME: currently assume continous indices
+  printf("Batch size:%d|%d\n", batch_size, meta->num_samples);
   assert(batch_size == meta->num_samples);
   for (int i = 1; i < batch_size; i++) {
     assert(meta->idxs[i] == meta->idxs[0] + i);
