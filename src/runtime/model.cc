@@ -3815,7 +3815,7 @@ struct DefaultConfig {
   const static bool onlyDataParallel = false;
   const static bool enableSampleParallel = true;
   const static bool enableParameterParallel = true;
-  const static bool enableAttributeParallel = true;
+  const static bool enableAttributeParallel = false;
   const static bool enableInplaceOptimizations = false;
   const static bool allowTensorOpMathConversion = false;
   const static int machine_model_version = 0;
