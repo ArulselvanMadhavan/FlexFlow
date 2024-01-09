@@ -3151,7 +3151,13 @@ void FFModel::compile(LossType loss_type,
     fprintf(stderr,
             "Note: only_data_parallel is specified, FlexFlow compiles a "
             "data-parallel PCG.\n");
+    config.only_data_parallel = false;
   }
+
+  std::cout << "DP:" << config.only_data_parallel << std::endl;
+  std::cout << "SP:" << config.enable_sample_parallel << std::endl;
+  std::cout << "AP:" << config.enable_attribute_parallel << std::endl;
+  std::cout << "PP:" << config.enable_parameter_parallel << std::endl;
   create_operators_from_layers();
   // Launch the graph optimize task
   {
@@ -3164,9 +3170,6 @@ void FFModel::compile(LossType loss_type,
         future.get_result<PCG::GraphOptimalViewSerialized>();
     Deserializer dez(ret.data, ret.total_bytes);
     // Reconstruct operators
-    std::cout << "SP:" << config.enable_sample_parallel << std::endl;
-    std::cout << "AP:" << config.enable_attribute_parallel << std::endl;
-    std::cout << "PP:" << config.enable_parameter_parallel << std::endl;
     PCG::Graph *best_graph = new PCG::Graph(this);
     std::unordered_map<PCG::Node, MachineView> optimal_views;
     deserialize_graph_optimal_view(dez, best_graph, optimal_views);
