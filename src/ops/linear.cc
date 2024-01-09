@@ -1133,9 +1133,7 @@ bool Linear::measure_operator_cost(Simulator *sim,
   m->input_type[0] = inputs[0]->data_type;
   m->weight_type[0] = this->data_type;
   m->output_type[0] = outputs[0]->data_type;
-  std::cout << "Lin prof:" << m->profiling << std::endl;
   assert(m->profiling == false);
-
   init_kernel(m, output_n, output_c);
 
   // allocate tensors in simulator

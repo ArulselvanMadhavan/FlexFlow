@@ -3151,7 +3151,7 @@ void FFModel::compile(LossType loss_type,
     fprintf(stderr,
             "Note: only_data_parallel is specified, FlexFlow compiles a "
             "data-parallel PCG.\n");
-    config.only_data_parallel = false;
+    // config.only_data_parallel = false;
   }
 
   std::cout << "DP:" << config.only_data_parallel << std::endl;
@@ -3812,10 +3812,10 @@ struct DefaultConfig {
   const static size_t offloadReserveSpaceSize =
       (size_t)8 * 1024 * 1024 * 1024; // 8 GB
   const static bool cpuOffload = false;
-  const static bool onlyDataParallel = true;
+  const static bool onlyDataParallel = false;
   const static bool enableSampleParallel = true;
-  const static bool enableParameterParallel = false;
-  const static bool enableAttributeParallel = false;
+  const static bool enableParameterParallel = true;
+  const static bool enableAttributeParallel = true;
   const static bool enableInplaceOptimizations = false;
   const static bool allowTensorOpMathConversion = false;
   const static int machine_model_version = 0;
@@ -3865,7 +3865,7 @@ FFConfig::FFConfig() {
   import_strategy_file = "";
   export_strategy_file = "";
   export_strategy_task_graph_file = "";
-  include_costs_dot_graph = false;
+  include_costs_dot_graph = true;
   export_strategy_computation_graph_file = "";
   dataset_path = "";
   substitution_json_path = tl::nullopt;
