@@ -3158,7 +3158,7 @@ void FFModel::compile(LossType loss_type,
   std::cout << "SP:" << config.enable_sample_parallel << std::endl;
   std::cout << "AP:" << config.enable_attribute_parallel << std::endl;
   std::cout << "PP:" << config.enable_parameter_parallel << std::endl;
-  config.profiling = false;
+
   std::cout << "profiling:" << config.profiling << std::endl;
   create_operators_from_layers();
   // Launch the graph optimize task
